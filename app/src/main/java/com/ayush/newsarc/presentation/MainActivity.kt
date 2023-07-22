@@ -12,6 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.ayush.newsarc.core.Constants
 import com.ayush.newsarc.data.remote.NewsApi
+import com.ayush.newsarc.domain.model.top_healdines.Article
+import com.ayush.newsarc.presentation.Screens.ArticleItem
+import com.ayush.newsarc.presentation.Screens.HomeScreen
 import com.ayush.newsarc.presentation.ui.theme.NewsArcTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -23,17 +26,22 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    @Inject
+    lateinit var newsApi: NewsApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-                    
+
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val response = newsApi.getHeadlines("in")
+//            Log.d("Tag", response.articles.toString())
+//        }
         setContent {
             NewsArcTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = Color.Black
+                    modifier  = Modifier.fillMaxSize(1f),
+                    color = Color.White
                 ) {
-
+                    HomeScreen()
                 }
             }
         }

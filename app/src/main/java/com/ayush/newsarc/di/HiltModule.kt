@@ -2,6 +2,9 @@ package com.ayush.newsarc.di
 
 import com.ayush.newsarc.core.Constants
 import com.ayush.newsarc.data.remote.NewsApi
+import com.ayush.newsarc.data.repository.GetNewsArticleRepositoryImpl
+import com.ayush.newsarc.domain.repository.GetNewsArticleRepository
+import com.ayush.newsarc.domain.use_case.GetTopHeadlinesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,4 +31,16 @@ object HiltModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(NewsApi::class.java)
+
+    @Singleton
+    @Provides
+    fun providesGetNewsRepository(newsApi: NewsApi): GetNewsArticleRepository {
+        return GetNewsArticleRepositoryImpl(newsApi = newsApi)
+    }
+
+    @Singleton
+    @Provides
+    fun providesGetTopHeadlinesUseCase(newsArticleRepository: GetNewsArticleRepository): GetTopHeadlinesUseCase {
+        return GetTopHeadlinesUseCase(newsArticleRepository)
+    }
 }
