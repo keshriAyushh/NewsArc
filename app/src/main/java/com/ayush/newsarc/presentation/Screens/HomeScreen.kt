@@ -1,6 +1,7 @@
 package com.ayush.newsarc.presentation.Screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,13 +41,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.ayush.newsarc.R
 import com.ayush.newsarc.presentation.viewmodel.NewsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    viewModel: NewsViewModel = hiltViewModel()
+    viewModel: NewsViewModel = hiltViewModel(),
+    navController: NavHostController,
+    onItemClick: (String) -> Unit
 ) {
 
     val res = viewModel.articles.value
@@ -70,69 +75,70 @@ fun HomeScreen(
         Column(
             verticalArrangement = Arrangement.Top,
             modifier = Modifier
-                .padding(10.dp)
                 .background(Color.White)
+                .padding(10.dp)
         ) {
-            OutlinedTextField(
-                value = searchQuery.value,
-                onValueChange = {
-                    searchQuery.value = it
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(15.dp)
-                    .clip(RoundedCornerShape(2.dp)),
-                placeholder = {
-                    Text(
-                        text = "Search",
-                        color = Color.Gray,
-                        fontSize = 14.sp
-                    )
-                },
-                trailingIcon = {
-                    Icon(imageVector = Icons.Default.Search, contentDescription = "search_news", tint = Color.Gray)
-                },
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-                    textColor = Color.Black,
-                    cursorColor = Color.Black,
-                    unfocusedTrailingIconColor = Color.Gray,
-                    focusedTrailingIconColor = Color.Blue,
-                    containerColor = Color.Transparent,
-                    focusedBorderColor = Color.Blue,
-                    unfocusedBorderColor = Color.Gray
-                ),
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Search
-                ),
-                visualTransformation = VisualTransformation.None
-            )
-            Row(
-                verticalAlignment = Alignment.Top,
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier
-                    .fillMaxWidth(1f)
-                    .background(Color.White)
-            ) {
-                Text(
-                    text = "Top Headlines",
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily(Font(R.font.sans_bold)),
-                    fontSize = 20.sp,
-                    modifier = Modifier
-                        .fillMaxWidth(1f)
-                        .background(Color.White)
-                )
-            }
-            Spacer(modifier = Modifier
-                .height(15.dp)
-                .background(Color.White))
-
             res.data?.let {
                 LazyColumn(content = {
+                    item {
+                        OutlinedTextField(
+                            value = searchQuery.value,
+                            onValueChange = {
+                                searchQuery.value = it
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(15.dp)
+                                .clip(RoundedCornerShape(2.dp)),
+                            placeholder = {
+                                Text(
+                                    text = "Search",
+                                    color = Color.Gray,
+                                    fontSize = 14.sp
+                                )
+                            },
+                            trailingIcon = {
+                                Icon(imageVector = Icons.Default.Search, contentDescription = "search_news", tint = Color.Gray)
+                            },
+                            colors = TextFieldDefaults.outlinedTextFieldColors(
+                                textColor = Color.Black,
+                                cursorColor = Color.Black,
+                                unfocusedTrailingIconColor = Color.Gray,
+                                focusedTrailingIconColor = Color.Blue,
+                                containerColor = Color.Transparent,
+                                focusedBorderColor = Color.Blue,
+                                unfocusedBorderColor = Color.Gray
+                            ),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Text,
+                                imeAction = ImeAction.Search
+                            ),
+                            visualTransformation = VisualTransformation.None
+                        )
+                        Row(
+                            verticalAlignment = Alignment.Top,
+                            horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier
+                                .fillMaxWidth(1f)
+                                .background(Color.White)
+                        ) {
+                            Text(
+                                text = "Top Headlines",
+                                color = Color.Black,
+                                fontWeight = FontWeight.Bold,
+                                fontFamily = FontFamily(Font(R.font.sans_bold)),
+                                fontSize = 20.sp,
+                                modifier = Modifier
+                                    .fillMaxWidth(1f)
+                                    .background(Color.White)
+                            )
+                        }
+                        Spacer(modifier = Modifier
+                            .height(15.dp)
+                            .background(Color.White))
+                    }
                     items(it) {
-                        ArticleItem(article = it)
+                        ArticleItem(article = it, Modifier.clickable { onItemClick(it.url) })
                         Spacer(modifier = Modifier.height(10.dp).background(Color.White))
                         Divider(
                             thickness = 0.5.dp,
@@ -145,10 +151,4 @@ fun HomeScreen(
         }
 
     }
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun PreviewHome() {
-    HomeScreen()
 }

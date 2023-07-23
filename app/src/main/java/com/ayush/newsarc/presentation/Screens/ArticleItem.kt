@@ -1,7 +1,9 @@
 package com.ayush.newsarc.presentation.Screens
 
+import android.service.autofill.OnClickAction
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,9 +28,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.ayush.newsarc.R
 import com.ayush.newsarc.domain.model.top_healdines.Article
+import com.ayush.newsarc.presentation.navigation.Screen
 import com.ayush.newsarc.presentation.ui.theme.Black
 import com.ayush.newsarc.presentation.ui.theme.Color1
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -39,10 +45,13 @@ import com.google.accompanist.pager.rememberPagerState
 
 
 @Composable
-fun ArticleItem(article: Article) {
+fun ArticleItem(
+    article: Article,
+    modifier: Modifier = Modifier
+) {
     Box(
         contentAlignment = Alignment.TopStart,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize(1f)
             .safeContentPadding()
 
