@@ -1,4 +1,4 @@
-package com.ayush.newsarc.presentation.Screens
+package com.ayush.newsarc.presentation.Screens.saved
 
 import androidx.compose.runtime.Composable
 

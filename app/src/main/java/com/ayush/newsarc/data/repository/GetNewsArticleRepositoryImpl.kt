@@ -15,4 +15,39 @@ class GetNewsArticleRepositoryImpl @Inject constructor(
         val response = newsApi.getHeadlines(country)
         return response.articles.toDomain()
     }
+
+    override suspend fun getGamingNews(): List<Article> {
+        val response = newsApi.getGamingNews()
+        return response.articles.toDomain()
+    }
+
+    override suspend fun getQueryRelatedNews(query: String): List<Article> {
+        val response = newsApi.getQueryRelatedNews(query)
+        return response.articles.toDomain()
+    }
+
+    override suspend fun getSportsNews(): List<Article> {
+        val response = newsApi.getSportsNews()
+        return response.articles.toDomain()
+    }
+
+    override suspend fun getPoliticalNews(): List<Article> {
+        val response = newsApi.getPoliticalNews()
+        return response.articles.toDomain()
+    }
+
+    override suspend fun getTechNews(): List<Article> {
+        val response = newsApi.getTechNews()
+        return response.articles.toDomain()
+    }
+
+    override suspend fun getEducationNews(): List<Article> {
+        val response = newsApi.getEducationNews()
+        return response.articles.toDomain()
+    }
+
+    override suspend fun getScienceNews(): List<Article> {
+        val response = newsApi.getScienceNews()
+        return response.articles.toDomain()
+    }
 }

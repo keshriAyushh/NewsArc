@@ -4,6 +4,7 @@ import com.ayush.newsarc.core.Constants
 import com.ayush.newsarc.data.remote.NewsApi
 import com.ayush.newsarc.data.repository.GetNewsArticleRepositoryImpl
 import com.ayush.newsarc.domain.repository.GetNewsArticleRepository
+import com.ayush.newsarc.domain.use_case.GetDiscoverUseCase
 import com.ayush.newsarc.domain.use_case.GetTopHeadlinesUseCase
 import dagger.Module
 import dagger.Provides
@@ -42,5 +43,11 @@ object HiltModule {
     @Provides
     fun providesGetTopHeadlinesUseCase(newsArticleRepository: GetNewsArticleRepository): GetTopHeadlinesUseCase {
         return GetTopHeadlinesUseCase(newsArticleRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun providesGetDiscoverUser(newsArticleRepository: GetNewsArticleRepository): GetDiscoverUseCase {
+        return GetDiscoverUseCase(newsArticleRepository)
     }
 }

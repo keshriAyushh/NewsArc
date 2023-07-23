@@ -1,4 +1,4 @@
-package com.ayush.newsarc.presentation.Screens
+package com.ayush.newsarc.presentation.Screens.home
 
 import android.service.autofill.OnClickAction
 import androidx.compose.foundation.Image

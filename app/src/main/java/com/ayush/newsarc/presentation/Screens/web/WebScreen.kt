@@ -1,4 +1,4 @@
-package com.ayush.newsarc.presentation.Screens
+package com.ayush.newsarc.presentation.Screens.web
 
 import android.view.ViewGroup
 import android.webkit.WebView

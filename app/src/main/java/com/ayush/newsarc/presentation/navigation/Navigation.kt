@@ -1,7 +1,6 @@
 package com.ayush.newsarc.presentation.navigation
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,10 +23,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ayush.newsarc.R
-import com.ayush.newsarc.presentation.Screens.DiscoverScreen
-import com.ayush.newsarc.presentation.Screens.HomeScreen
-import com.ayush.newsarc.presentation.Screens.SavedScreen
-import com.ayush.newsarc.presentation.Screens.WebScreen
+import com.ayush.newsarc.presentation.Screens.discover.DiscoverScreen
+import com.ayush.newsarc.presentation.Screens.home.HomeScreen
+import com.ayush.newsarc.presentation.Screens.saved.SavedScreen
+import com.ayush.newsarc.presentation.Screens.web.WebScreen
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
@@ -107,7 +106,10 @@ fun NavigationController(navController: NavHostController) {
         }
 
         composable(Screen.Discover.route) {
-            DiscoverScreen()
+            DiscoverScreen(navController = navController, onItemClick = {url ->
+                val encodedUrl = URLEncoder.encode(url, StandardCharsets.UTF_8.toString())
+                navController.navigate("news_detail/$encodedUrl")
+            })
         }
         composable(Screen.Saved.route) {
             SavedScreen()
