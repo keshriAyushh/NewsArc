@@ -1,4 +1,4 @@
-package com.ayush.newsarc.domain.use_case
+package com.ayush.newsarc.domain.use_case.top_headlines_use_case
 
 import android.util.Log
 import com.ayush.newsarc.core.Resource

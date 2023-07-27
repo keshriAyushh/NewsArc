@@ -12,57 +12,16 @@ interface NewsApi {
     @GET("top-headlines")
     suspend fun getHeadlines(
         @Query("country") country: String,
-        @Query("sortBy") sortBy: String = "popularity",
+        @Query("sortBy") sortBy: String = "relevancy",
+        @Query("language") language: String = "en",
         @Query("apiKey") apiKey: String = Constants.API_KEY,
         @Query("pageSize") pageSize: Int = 100
     ): TopNewsDto
-
-    @GET("everything")
-    suspend fun getPoliticalNews(
-        @Query("q") query: String = "politics",
-        @Query("sortBy") sortBy: String = "popularity",
-        @Query("apiKey") apiKey: String = Constants.API_KEY,
-    ): TopNewsDto
-
-    @GET("everything")
-    suspend fun getSportsNews(
-        @Query("q") query: String = "sport",
-        @Query("sortBy") sortBy: String = "popularity",
-        @Query("apiKey") apiKey: String = Constants.API_KEY,
-    ): TopNewsDto
-
-    @GET("everything")
-    suspend fun getEducationNews(
-        @Query("q") query: String = "education",
-        @Query("sortBy") sortBy: String = "popularity",
-        @Query("apiKey") apiKey: String = Constants.API_KEY,
-    ): TopNewsDto
-
-    @GET("everything")
-    suspend fun getGamingNews(
-        @Query("q") query: String = "gaming",
-        @Query("sortBy") sortBy: String = "popularity",
-        @Query("apiKey") apiKey: String = Constants.API_KEY,
-    ): TopNewsDto
-
-    @GET("everything")
-    suspend fun getTechNews(
-        @Query("q") query: String = "tech",
-        @Query("sortBy") sortBy: String = "popularity",
-        @Query("apiKey") apiKey: String = Constants.API_KEY,
-    ): TopNewsDto
-
-    @GET("everything")
-    suspend fun getScienceNews(
-        @Query("q") query: String = "science",
-        @Query("sortBy") sortBy: String = "popularity",
-        @Query("apiKey") apiKey: String = Constants.API_KEY,
-    ): TopNewsDto
-
     @GET("everything")
     suspend fun getQueryRelatedNews(
         @Query("q") query: String,
-        @Query("sortBy") sortBy: String = "popularity",
+        @Query("sortBy") sortBy: String = "relevancy",
+        @Query("language") language: String = "en",
         @Query("apiKey") apiKey: String = Constants.API_KEY
     ): TopNewsDto
 

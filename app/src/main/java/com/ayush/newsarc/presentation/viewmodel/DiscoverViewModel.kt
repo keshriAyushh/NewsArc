@@ -4,8 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ayush.newsarc.core.Resource
-import com.ayush.newsarc.domain.use_case.GetDiscoverUseCase
-import com.ayush.newsarc.domain.use_case.GetTopHeadlinesUseCase
+import com.ayush.newsarc.domain.use_case.discover_use_case.GetDiscoverUseCase
 import com.ayush.newsarc.presentation.DiscoverStateHolder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn

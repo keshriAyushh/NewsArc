@@ -43,8 +43,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.ayush.newsarc.R
-import com.ayush.newsarc.domain.model.top_healdines.Article
-import com.ayush.newsarc.presentation.DiscoverStateHolder
 import com.ayush.newsarc.presentation.Screens.home.ArticleItem
 import com.ayush.newsarc.presentation.viewmodel.DiscoverViewModel
 

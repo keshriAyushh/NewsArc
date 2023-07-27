@@ -1,4 +1,4 @@
-package com.ayush.newsarc.domain.use_case
+package com.ayush.newsarc.domain.use_case.discover_use_case
 
 import com.ayush.newsarc.core.Resource
 import com.ayush.newsarc.domain.model.top_healdines.Article

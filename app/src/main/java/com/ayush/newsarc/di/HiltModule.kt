@@ -4,8 +4,8 @@ import com.ayush.newsarc.core.Constants
 import com.ayush.newsarc.data.remote.NewsApi
 import com.ayush.newsarc.data.repository.GetNewsArticleRepositoryImpl
 import com.ayush.newsarc.domain.repository.GetNewsArticleRepository
-import com.ayush.newsarc.domain.use_case.GetDiscoverUseCase
-import com.ayush.newsarc.domain.use_case.GetTopHeadlinesUseCase
+import com.ayush.newsarc.domain.use_case.discover_use_case.GetDiscoverUseCase
+import com.ayush.newsarc.domain.use_case.top_headlines_use_case.GetTopHeadlinesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,4 +50,6 @@ object HiltModule {
     fun providesGetDiscoverUser(newsArticleRepository: GetNewsArticleRepository): GetDiscoverUseCase {
         return GetDiscoverUseCase(newsArticleRepository)
     }
+
+
 }

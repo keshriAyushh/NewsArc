@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ayush.newsarc.core.Resource
-import com.ayush.newsarc.domain.use_case.GetTopHeadlinesUseCase
+import com.ayush.newsarc.domain.use_case.top_headlines_use_case.GetTopHeadlinesUseCase
 import com.ayush.newsarc.presentation.HomeStateHolder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn

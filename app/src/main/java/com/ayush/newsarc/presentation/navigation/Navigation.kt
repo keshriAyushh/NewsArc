@@ -25,7 +25,6 @@ import androidx.navigation.navArgument
 import com.ayush.newsarc.R
 import com.ayush.newsarc.presentation.Screens.discover.DiscoverScreen
 import com.ayush.newsarc.presentation.Screens.home.HomeScreen
-import com.ayush.newsarc.presentation.Screens.saved.SavedScreen
 import com.ayush.newsarc.presentation.Screens.web.WebScreen
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -39,8 +38,7 @@ fun Navigation() {
 
     val items = listOf(
         Screen.Home,
-        Screen.Discover,
-        Screen.Saved
+        Screen.Discover
     )
 
     Scaffold(
@@ -110,9 +108,6 @@ fun NavigationController(navController: NavHostController) {
                 val encodedUrl = URLEncoder.encode(url, StandardCharsets.UTF_8.toString())
                 navController.navigate("news_detail/$encodedUrl")
             })
-        }
-        composable(Screen.Saved.route) {
-            SavedScreen()
         }
 
         composable(

@@ -10,7 +10,6 @@ sealed class Screen(
 ) {
 
     object Home: Screen("home", "Home", R.drawable.home)
-    object Saved: Screen("saved", "Saved", R.drawable.save)
     object Discover: Screen("discover", "Discover", R.drawable.discover)
     object Web: Screen("news_detail", "Web", null)
 }
